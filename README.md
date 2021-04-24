@@ -1,5 +1,10 @@
 # GithubRepositoriesServer
 
+# Przygotowanie do uruchomienia
+
+jeżeli "import request" z klasy gitRepositoryHandler podklreśla się na czerwono należy w projekcie w terminalu napisać następujacą komendę:  
+pip install requests
+
 # Obsługa
 Serwer obłusguje zapytania GET w postaci http://localhost:8000/github_username/command gdzie github_username zastępujemy nazwą dowolnego użytkownika githuba,
 a command należy zastąpić jedną z następujących komend:  
@@ -8,9 +13,6 @@ total_stars - by uzyskać łączną ilość gwiazdek dla wszystkich repozytorió
 
 przykład1: http://localhost:8000/lstachon/repositories.   
 przykład2: http://localhost:8000/lstachon/total_stars
-
-jeżeli "import request" z klasy gitRepositoryHandler podklreśla się na czerwono należy w projekcie w terminalu napisać następujacą komendę:  
-pip install requests
 
 # Możliwe ulepszenia
 
