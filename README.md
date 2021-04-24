@@ -3,7 +3,7 @@
 # Przygotowanie do uruchomienia
 
 Wymagane jest posiadanie zainstalowanego pakietu request, można to zrobić za pomocą komendy:  
-pip install requests
+`pip install requests`
 
 # Obsługa
 Serwer obłusguje zapytania GET w postaci http://localhost:8000/github_username/command gdzie github_username zastępujemy nazwą dowolnego użytkownika githuba,

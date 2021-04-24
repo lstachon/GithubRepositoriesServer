@@ -4,14 +4,14 @@ GITHUB_API = 'https://api.github.com/users/'
 GITHUB_API_REQUESTS = '/repos?per_page=100&page='
 
 
-class GitUser:
+class GitRepositoryHandler:
     def __init__(self, name):
         self.username = name
 
     def listRepositories(self):
-        i = 1
+        page_number = 1
 
-        repositories_info = self.getRepositoryInfo(i)
+        repositories_info = self.getRepositoryInfo(page_number)
 
         result = []
 
@@ -23,15 +23,15 @@ class GitUser:
             for repository in repositories_info:
                 result.append(
                     "repository name: " + repository['name'] + " stars: " + str(repository['stargazers_count']))
-            i = i + 1
-            repositories_info = self.getRepositoryInfo(i)
+            page_number += 1
+            repositories_info = self.getRepositoryInfo(page_number)
 
         return result
 
     def getTotalStars(self):
-        i = 1
+        page_number = 1
 
-        repositories_info = self.getRepositoryInfo(i)
+        repositories_info = self.getRepositoryInfo(page_number)
 
         if len(repositories_info) == 0:
             return "the chosen user not exists or has no repositories"
@@ -40,8 +40,8 @@ class GitUser:
         while len(repositories_info) > 0:
             for repository in repositories_info:
                 stars_sum += repository['stargazers_count']
-            i += 1
-            repositories_info = self.getRepositoryInfo(i)
+            page_number += 1
+            repositories_info = self.getRepositoryInfo(page_number)
 
         return str(stars_sum)
 

@@ -1,8 +1,8 @@
 import gitRepositoryHandler
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
-hostName = "localhost"
-serverPort = 8000
+HOST_NAME = "localhost"
+SERVER_PORT = 8000
 
 
 class MyServer(BaseHTTPRequestHandler):
@@ -19,14 +19,14 @@ class MyServer(BaseHTTPRequestHandler):
             self.printInfo()
 
         elif (actions[2] == "repositories"):
-            githandler = gitRepositoryHandler.GitUser(actions[1])
+            githandler = gitRepositoryHandler.GitRepositoryHandler(actions[1])
             repoList = githandler.listRepositories()
             for row in repoList:
                 self.wfile.write(bytes(row, "utf-8"))
                 self.wfile.write(bytes("<br>", "utf-8"))
 
         elif (actions[2] == "total_stars"):
-            githandler = gitRepositoryHandler.GitUser(actions[1])
+            githandler = gitRepositoryHandler.GitRepositoryHandler(actions[1])
             totalStars = githandler.getTotalStars()
             self.wfile.write(bytes("user total stars: " + totalStars, "utf-8"))
 
@@ -44,8 +44,8 @@ class MyServer(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
-    webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))
+    webServer = HTTPServer((HOST_NAME, SERVER_PORT), MyServer)
+    print("Server started http://%s:%s" % (HOST_NAME, SERVER_PORT))
     try:
         webServer.serve_forever()
     except KeyboardInterrupt:
