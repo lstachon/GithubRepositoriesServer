@@ -1,4 +1,4 @@
-import gitRepositoryHandler
+import git_repository_handler
 from http.server import BaseHTTPRequestHandler, HTTPServer
 
 HOST_NAME = "localhost"
@@ -19,14 +19,14 @@ class MyServer(BaseHTTPRequestHandler):
             self.printInfo()
 
         elif (actions[2] == "repositories"):
-            githandler = gitRepositoryHandler.GitRepositoryHandler(actions[1])
+            githandler = git_repository_handler.GitRepositoryHandler(actions[1])
             repoList = githandler.listRepositories()
             for row in repoList:
                 self.wfile.write(bytes(row, "utf-8"))
                 self.wfile.write(bytes("<br>", "utf-8"))
 
         elif (actions[2] == "total_stars"):
-            githandler = gitRepositoryHandler.GitRepositoryHandler(actions[1])
+            githandler = git_repository_handler.GitRepositoryHandler(actions[1])
             totalStars = githandler.getTotalStars()
             self.wfile.write(bytes("user total stars: " + totalStars, "utf-8"))
 
