@@ -2,7 +2,7 @@
 
 # Przygotowanie do uruchomienia
 
-jeżeli "import request" z klasy gitRepositoryHandler podklreśla się na czerwono należy w projekcie w terminalu napisać następujacą komendę:  
+Wymagane jest posiadanie zainstalowanego pakietu request, można to zrobić za pomocą komendy:  
 pip install requests
 
 # Obsługa
