@@ -8,10 +8,10 @@ class GitRepositoryHandler:
     def __init__(self, name):
         self.username = name
 
-    def listRepositories(self):
+    def list_repositories(self):
         page_number = 1
 
-        repositories_info = self.getRepositoryInfo(page_number)
+        repositories_info = self.get_repository_info(page_number)
 
         result = []
 
@@ -24,14 +24,14 @@ class GitRepositoryHandler:
                 result.append(
                     "repository name: " + repository['name'] + " stars: " + str(repository['stargazers_count']))
             page_number += 1
-            repositories_info = self.getRepositoryInfo(page_number)
+            repositories_info = self.get_repository_info(page_number)
 
         return result
 
-    def getTotalStars(self):
+    def get_total_stars(self):
         page_number = 1
 
-        repositories_info = self.getRepositoryInfo(page_number)
+        repositories_info = self.get_repository_info(page_number)
 
         if len(repositories_info) == 0:
             return "the chosen user does not exist or has no repositories"
@@ -41,10 +41,10 @@ class GitRepositoryHandler:
             for repository in repositories_info:
                 stars_sum += repository['stargazers_count']
             page_number += 1
-            repositories_info = self.getRepositoryInfo(page_number)
+            repositories_info = self.get_repository_info(page_number)
 
         return str(stars_sum)
 
-    def getRepositoryInfo(self, i):
-        r = requests.get(GITHUB_API + self.username + GITHUB_API_REQUESTS + str(i))
-        return r.json()
+    def get_repository_info(self, i):
+        repository_info = requests.get(GITHUB_API + self.username + GITHUB_API_REQUESTS + str(i))
+        return repository_info.json()

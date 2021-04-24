@@ -16,27 +16,27 @@ class MyServer(BaseHTTPRequestHandler):
 
         if (len(actions) != 3):
             self.wfile.write(bytes("wrong parameters number <br>", "utf-8"))
-            self.printInfo()
+            self.print_info()
 
         elif (actions[2] == "repositories"):
             githandler = git_repository_handler.GitRepositoryHandler(actions[1])
-            repoList = githandler.listRepositories()
+            repoList = githandler.list_repositories()
             for row in repoList:
                 self.wfile.write(bytes(row, "utf-8"))
                 self.wfile.write(bytes("<br>", "utf-8"))
 
         elif (actions[2] == "total_stars"):
             githandler = git_repository_handler.GitRepositoryHandler(actions[1])
-            totalStars = githandler.getTotalStars()
+            totalStars = githandler.get_total_stars()
             self.wfile.write(bytes("user total stars: " + totalStars, "utf-8"))
 
         else:
             self.wfile.write(bytes("command not found <br>", "utf-8"))
-            self.printInfo()
+            self.print_info()
 
         self.wfile.write(bytes("</body></html>", "utf-8"))
 
-    def printInfo(self):
+    def print_info(self):
         self.wfile.write(bytes("please insert url http://localhost:8000/github_username/command <br>", "utf-8"))
         self.wfile.write(bytes("acceptable commands: <br>", "utf-8"))
         self.wfile.write(bytes("repositories - to list github user repositories <br>", "utf-8"))
