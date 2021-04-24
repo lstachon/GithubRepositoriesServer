@@ -1,44 +1,40 @@
 import requests
 
-APIGITHUB = 'https://api.github.com/users/'
-APIGITHUB_RECORDS = '/repos?per_page=100&page='
+GITHUB_API = 'https://api.github.com/users/'
+GITHUB_API_REQUESTS = '/repos?per_page=100&page='
 
-class TooManyRequestsError(Exception):
-    pass
 
-class gitRepo:
-    def __init__(self,name):
+class gitUser:
+    def __init__(self, name):
         self.username = name
 
-    def listRepos(self):
+    def listRepositories(self):
         i = 1
-        r = requests.get(APIGITHUB + self.username + APIGITHUB_RECORDS + str(i))
-        dict_list = r.json()
+        r = requests.get(GITHUB_API + self.username + GITHUB_API_REQUESTS + str(i))
+        repositories_info = r.json()
 
         result = []
-        while(len(dict_list)!=0):
-            for dict in dict_list:
-                result.append("repository name: "+dict['name']+" stars: "+str(dict['stargazers_count']))
-            i= i+ 1
-            r = requests.get(APIGITHUB + self.username + APIGITHUB_RECORDS + str(i))
-            dict_list = r.json()
+        while (len(repositories_info) > 0):
+            for repository in repositories_info:
+                result.append(
+                    "repository name: " + repository['name'] + " stars: " + str(repository['stargazers_count']))
+            i = i + 1
+            r = requests.get(GITHUB_API + self.username + GITHUB_API_REQUESTS + str(i))
+            repositories_info = r.json()
 
         return result
 
-
-    def getStars(self):
+    def getTotalStars(self):
         i = 1
-        r = requests.get(APIGITHUB + self.username + APIGITHUB_RECORDS + str(i))
-        dict_list = r.json()
+        r = requests.get(GITHUB_API + self.username + GITHUB_API_REQUESTS + str(i))
+        repositories_info = r.json()
 
         stars_ctr = 0
-        while(len(dict_list)!=0):
-            for dict in dict_list:
-                stars_ctr+=dict['stargazers_count']
-            i+=1
-            r = requests.get(APIGITHUB + self.username + APIGITHUB_RECORDS + str(i))
-            dict_list = r.json()
+        while (len(repositories_info) > 0):
+            for repository in repositories_info:
+                stars_ctr += repository['stargazers_count']
+            i += 1
+            r = requests.get(GITHUB_API + self.username + GITHUB_API_REQUESTS + str(i))
+            repositories_info = r.json()
 
         return str(stars_ctr)
-
-
