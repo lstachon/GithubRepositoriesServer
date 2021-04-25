@@ -18,4 +18,6 @@ przykład2: http://localhost:8000/lstachon/total_stars
 
 Ulepszenie requesta listowania repozytoriów o dodanie współtwórców.   
 
-Obsługa wyjątku gdy API githuba odmawia dostępu.
+Obsługa wyjątku gdy API githuba odmawia dostępu.  
+
+Wypisywanie repozytoriów dla danego uzytkownika które były pisane w większości w podanym przez nas języku.  
