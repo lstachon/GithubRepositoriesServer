@@ -14,6 +14,8 @@ total_stars - by uzyskać łączną ilość gwiazdek dla wszystkich repozytorió
 przykład1: http://localhost:8000/lstachon/repositories.   
 przykład2: http://localhost:8000/lstachon/total_stars
 
+Zapytania były testowane na przeglądarkach internetowych Google Chrome i Firefox.
+
 # Możliwe ulepszenia
 
 Ulepszenie requesta listowania repozytoriów o dodanie współtwórców.   
