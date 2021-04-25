@@ -2,7 +2,7 @@
 
 # Przygotowanie do uruchomienia
 
-Wymagane jest posiadanie zainstalowanego pythona3. Wymagane jest również zainstalowanie pakietu requests, można to zrobić za pomocą komendy:  
+Wymagane jest posiadanie zainstalowanego pythona3 i pakietu requests, pakiet ten mozna zainstalować za pomocą komendy:  
 `pip install requests`
 
 # Obsługa
